@@ -1,52 +1,4 @@
 
-// import { getAuth, signInWithEmailAndPassword } from "./firebase.js";
-
-// const auth = getAuth();
-// let signinEmail = document.getElementById("loginEmail");
-// let signinPassword = document.getElementById("loginPassword");
-
-// let signinBtn = document.getElementById("loginBtn");
-
-
-// signinBtn.addEventListener("click", () => {
-//     if (signinEmail.value.trim() && signinPassword.value.trim()) {
-//         signInWithEmailAndPassword(auth, signinEmail.value, signinPassword.value)
-//             .then((userCredential) => {
-//                 // console.log("Signed-in user:", userCredential.user);
-
-//                 // sweet alert
-        
-//         Swal.fire({
-//             title: "Congratulation",
-//             text: "Sign in successfully",
-//             icon: "success"
-//           });
-//                 setTimeout(() => {
-//                     location.href = "profile.html";
-//                 }, 1000);
-                
-               
-//             })
-//             .catch((error) => {
-//                 // console.log("Sign-in error:", error.message);
-//                       // sweet alert
-//       Swal.fire({
-//         icon: "error",
-//         title: "Invalid Password",
-//         text: "Please try again!"
-//     });
-         
-//             });
-//     } else {
-//         // console.log("Please enter both email and password.");
-//                 // sweet alert
-//                 Swal.fire({
-//                     icon: "warning",
-//                     title: "Warning",
-//                     text: "Please fill all fields before submitting!"
-//                 });
-//     }
-// });
 
 import { getAuth, signInWithEmailAndPassword } from "./firebase.js";
 
@@ -89,7 +41,7 @@ signinBtn.addEventListener("click", () => {
                     Swal.fire({
                         icon: "error",
                         title: "Invalid Password",
-                        text: "The password you entered is incorrect. Please try again!",
+                        text: "The password should be at least 6 characters long.",
                     });
                 } else {
                     // Show a general error alert for other cases

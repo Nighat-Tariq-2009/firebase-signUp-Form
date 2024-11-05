@@ -59,7 +59,7 @@ let signUp =() => {
     } else if (errorCode === "auth/weak-password") {
       Swal.fire({
         title: "Incorrect Password",
-        text: "The password you entered is incorrect. Please try again.",
+        text: "The password should be at least 6 characters long.",
         icon: "error"
       });
     } else{
