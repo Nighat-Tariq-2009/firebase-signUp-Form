@@ -2,17 +2,6 @@
 import { getAuth, createUserWithEmailAndPassword } from "./firebase.js";
   
 const auth = getAuth();
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     const uid = user.uid;
-//     console.log("user", user)
-  
-//   } else {
-//     console.log("user not exist")
-
-//   }
-// });
-
 
 let signUp =() => {
 
@@ -33,6 +22,22 @@ let signUp =() => {
   .then((res) => {
     const user = res.user;
     console.log("user", res.user);
+            // sweet alert
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Signed up successfully"
+            });
     setTimeout(() => {
       location.href = "signin.html";
   }, 2000);
@@ -42,10 +47,32 @@ let signUp =() => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log("error",error)
-
- 
+    console.log("Error code:", errorCode);
+     
+    if (errorCode === "auth/email-already-in-use") {
+    
+      Swal.fire({
+        title: "Email Already Exists",
+        text: "Please sign in instead.",
+        icon: "error"
+      })
+    } else if (errorCode === "auth/weak-password") {
+      Swal.fire({
+        title: "Incorrect Password",
+        text: "The password you entered is incorrect. Please try again.",
+        icon: "error"
+      });
+    } else{
+      Swal.fire({
+      title: "Invalid email ",
+      text: "try again",
+      icon: "error",
+    });
+  }
 });
+
+signupEmail.value = "";
+signupPassword.value = "";
 
 };
 
